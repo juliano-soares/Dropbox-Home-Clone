@@ -1,15 +1,25 @@
 import React from 'react';
 
-import { Container, HeaderWrapper, Header, DropboxLogo, Content } from './styles';
+import {
+  Container,
+  HeaderWrapper,
+  Header,
+  DropboxLogo,
+  Content,
+} from './styles';
 
 interface Props {
-  variant: 'blue' | 'beige' | 'white'| 'black';
+  variant: 'blue' | 'beige' | 'white' | 'black';
   title: string;
   description: string;
 }
 
-const Section: React.FC<Props> = ({variant, title, description}) => {
+const Section: React.FC<Props> = ({ variant, title, description }) => {
   const buttonVariant = Math.round(Math.random());
+
+  function handleToggle() {
+    if (window.toggleActiveMenu) window.toggleActiveMenu();
+  }
 
   return (
     <Container className={variant}>
@@ -20,7 +30,9 @@ const Section: React.FC<Props> = ({variant, title, description}) => {
             <span>Dropbox</span>
           </h1>
 
-          <button>{buttonVariant === 0 ? 'Acessar' : 'Interagir'}</button>
+          <button onClick={handleToggle}>
+            {buttonVariant === 0 ? 'Interagir' : 'Acessar'}
+          </button>
         </Header>
       </HeaderWrapper>
 
@@ -30,6 +42,6 @@ const Section: React.FC<Props> = ({variant, title, description}) => {
       </Content>
     </Container>
   );
-}
+};
 
 export default Section;
